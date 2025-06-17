@@ -1,0 +1,34 @@
+[project]
+name = "umbrella-onboarding"
+version = "0.1.0"
+description = "AI Agent for the Umbrella Company onboarding"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faker>=37.4.0",
+    "langchain>=0.3.25",
+    "langchain-chroma>=0.2.4",
+    "langchain-community>=0.3.25",
+    "langchain-groq>=0.3.2",
+    "langchain-openai>=0.3.23",
+    "langsmith>=0.3.45",
+    "pypdf>=5.6.0",
+    "python-decouple>=3.8",
+    "streamlit>=1.45.1",
+]
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.35.0",
+    "pytest-cov>=6.2.1",
+    "ruff>=0.11.13",
+    "ty>=0.0.1a10",
+]
+
+[tool.poe.tasks]
+test        = "pytest"
+cov         = "pytest --cov=commonactors --cov-report=term-missing"
+lint        = "ruff check ."
+format      = "ruff format ."
+tc          = "ty check ."
+run         = "uv run streamlit --watchdog run app.py"
